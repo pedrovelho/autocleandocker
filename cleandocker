@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# clean docker containers that does not exist anymore
+docker ps -qa --no-trunc --filter "status=exited" | while read contoremove ; do
+	docker rm $contoremove
+done
+
+# clean volumes that are dangling
+docker volume ls -qf dangling=true | while read voltoremove ; do
+	xargs -r docker volume rm $voltoremove
+done
+
+# clean docker images that are not linked to any image
+docker images | grep "none" | awk '/ / { print $3 }' | while read imgtoremove ; do
+	docker rmi $imgtoremove
+done 
