@@ -11,6 +11,6 @@ docker volume ls -qf dangling=true | while read voltoremove ; do
 done
 
 # clean docker images that are not linked to any image
-docker images | grep "none" | awk '/ / { print $3 }' | while read imgtoremove ; do
+docker images -a | grep "none" | awk '/ / { print $3 }' | while read imgtoremove ; do
 	docker rmi $imgtoremove
 done 
