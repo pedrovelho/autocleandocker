@@ -35,3 +35,8 @@ Then you can check the file permission match as below.
 -rwxr-xr-x   1 root root  491 Feb 26 10:21 cleandocker
 ```
 
+## News
+
+Now we also have a autocleandockerimages, that given a certain disk threshold will
+delete all docker images. 
+
