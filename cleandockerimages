@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# remove also all images once per month
+sudo docker images -a --quiet | while read image_id ; do
+    sudo docker rmi $image_id ;
+done
